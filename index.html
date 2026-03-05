@@ -6,6 +6,7 @@
     <title>DUL® | Official Store</title>
     <style>
         :root {
+            --base-bronze: #917F54;
             --imperial-red: radial-gradient(circle, #8B0000 0%, #1A0000 100%);
             --royal-blue: radial-gradient(circle, #002366 0%, #00081A 100%);
             --emerald-green: radial-gradient(circle, #022b10 0%, #000a04 100%);
@@ -13,72 +14,65 @@
             --obsidian-black: radial-gradient(circle, #121212 0%, #000000 100%);
         }
 
-        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; transition: background 0.8s ease; overflow-x: hidden; min-height: 100vh; }
+        /* LIQUID GLASS LOADER */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--base-bronze); display: flex; justify-content: center; align-items: center;
+            z-index: 100000; transition: opacity 1s ease;
+        }
+        .liquid-glass {
+            width: 140px; height: 140px; background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px); border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Inter', sans-serif; font-weight: 200; letter-spacing: 12px; color: #fff;
+            animation: liquid-sway 3s infinite ease-in-out;
+        }
+        @keyframes liquid-sway {
+            0%, 100% { border-radius: 50%; transform: scale(1); }
+            33% { border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%; transform: scale(1.05); }
+            66% { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: scale(0.98); }
+        }
+
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(--base-bronze); color: #fff; transition: background 0.8s ease; overflow-x: hidden; min-height: 100vh; }
+        #main-content { opacity: 0; transition: opacity 1.5s ease; }
         
-        /* Navigation */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000; backdrop-filter: blur(15px); }
         .logo { font-weight: 900; letter-spacing: 8px; font-size: 1.5rem; cursor: pointer; }
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .lang-btn { font-size: 0.7rem; font-weight: bold; cursor: pointer; padding: 8px 12px; border: 1px solid currentColor; border-radius: 5px; background: transparent; color: inherit; }
         .how-btn { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid currentColor; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
-        .cart-widget { background: #000; color: #fff; padding: 10px 20px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
+        .cart-widget { background: #fff; color: #000; padding: 10px 20px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
 
-        /* Header */
         header { margin-top: 150px; text-align: center; }
         header h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 20px; margin-bottom: 10px; }
-        .sub-header { font-size: 0.8rem; letter-spacing: 5px; opacity: 0.6; text-transform: uppercase; }
+        .sub-header { font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; text-transform: uppercase; }
 
-        /* Product Grid */
         .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 60px 20px; }
         .card { width: 180px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
-        .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); transition: 0.5s; }
+        .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3)); transition: 0.5s; }
         .card.active { transform: scale(1.2); z-index: 50; }
         .info { margin-top: 20px; opacity: 0; transition: 0.5s; }
         .card.active .info { opacity: 1; }
-        .order-btn { background: none; border: 1px solid currentColor; color: inherit; padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%; border-radius: 5px; }
+        .order-btn { background: #fff; border: none; color: #000; padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%; border-radius: 5px; font-weight: bold; }
 
-        /* LIVE EFFECTS (Галын болон гэрлийн эффект) */
-        /* Imperial Crimson - Галт дөл */
+        /* NEON GLOWS */
         .card:nth-child(1).active img { animation: fire-glow 1.5s infinite alternate; }
-        @keyframes fire-glow {
-            0% { filter: drop-shadow(0 0 15px #ff4500) brightness(1); }
-            100% { filter: drop-shadow(0 0 35px #ff8c00) brightness(1.3); transform: rotate(1deg) scale(1.05); }
-        }
-
-        /* Royal Sapphire - Дөлөн цохилт */
+        @keyframes fire-glow { 0% { filter: drop-shadow(0 0 15px #ff4500) brightness(1); } 100% { filter: drop-shadow(0 0 35px #ff8c00) brightness(1.3); transform: rotate(1deg) scale(1.05); } }
         .card:nth-child(2).active img { animation: blue-pulse 2s infinite ease-in-out; }
-        @keyframes blue-pulse {
-            0% { filter: drop-shadow(0 0 10px #0000ff); }
-            50% { filter: drop-shadow(0 0 30px #00ffff); }
-            100% { filter: drop-shadow(0 0 10px #0000ff); }
-        }
-
-        /* Emerald Majesty - Зүлэгний гэрэлтэлт */
+        @keyframes blue-pulse { 0% { filter: drop-shadow(0 0 10px #0000ff); } 50% { filter: drop-shadow(0 0 30px #00ffff); } 100% { filter: drop-shadow(0 0 10px #0000ff); } }
         .card:nth-child(3).active img { animation: green-sway 3s infinite ease-in-out; }
-        @keyframes green-sway {
-            0%, 100% { transform: rotate(-2deg); filter: drop-shadow(0 0 15px #00ff00); }
-            50% { transform: rotate(2deg); filter: drop-shadow(0 0 25px #adff2f); }
-        }
-
-        /* Golden Aurelia - Алтан туяа */
+        @keyframes green-sway { 0%, 100% { transform: rotate(-2deg); filter: drop-shadow(0 0 15px #00ff00); } 50% { transform: rotate(2deg); filter: drop-shadow(0 0 25px #adff2f); } }
         .card:nth-child(4).active img { animation: gold-shimmer 2s infinite linear; }
-        @keyframes gold-shimmer {
-            0% { filter: contrast(1.1) drop-shadow(0 0 10px gold); }
-            50% { filter: contrast(1.4) drop-shadow(0 0 30px yellow); }
-            100% { filter: contrast(1.1) drop-shadow(0 0 10px gold); }
-        }
-
-        /* Obsidian Noir - Нууцлаг утаа */
+        @keyframes gold-shimmer { 0% { filter: contrast(1.1) drop-shadow(0 0 10px gold); } 50% { filter: contrast(1.4) drop-shadow(0 0 30px yellow); } 100% { filter: contrast(1.1) drop-shadow(0 0 10px gold); } }
         .card:nth-child(5).active img { animation: noir-mist 4s infinite ease-in-out; }
-        @keyframes noir-mist {
-            0%, 100% { filter: grayscale(0.3) blur(0px); }
-            50% { filter: grayscale(0) blur(1px) drop-shadow(0 0 25px #444); }
-        }
+        @keyframes noir-mist { 0%, 100% { filter: grayscale(0.3) blur(0px); } 50% { filter: grayscale(0) blur(1px) drop-shadow(0 0 25px #444); } }
 
-        /* AI Chat */
-        #chat-box { position: fixed; bottom: 100px; right: 30px; width: 320px; height: 450px; background: #fff; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; overflow: hidden; border: 1px solid #eee; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 500px; background: #fff; color: #000; padding: 35px; border-radius: 25px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: none; z-index: 20000; }
+        .close-modal { float: right; cursor: pointer; font-size: 1.5rem; font-weight: bold; }
+
+        #chat-box { position: fixed; bottom: 100px; right: 30px; width: 320px; height: 450px; background: #fff; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; overflow: hidden; border: 1px solid #eee; color: #000; }
         .chat-header { background: #1a1a1a; color: #fff; padding: 20px; font-size: 0.9rem; font-weight: bold; text-align: center; }
-        #chat-body { padding: 20px; flex-grow: 1; overflow-y: auto; font-size: 0.85rem; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; color: #333; }
+        #chat-body { padding: 20px; flex-grow: 1; overflow-y: auto; font-size: 0.85rem; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
         .msg { padding: 10px 15px; border-radius: 15px; max-width: 80%; }
         .ai-msg { background: #eee; align-self: flex-start; }
         .user-msg { background: #000; color: #fff; align-self: flex-end; }
@@ -86,104 +80,117 @@
         #user-input { flex-grow: 1; border: 1px solid #ddd; padding: 10px; border-radius: 10px; outline: none; }
         .send-btn { background: #000; color: #fff; border: none; padding: 10px 15px; border-radius: 10px; cursor: pointer; }
 
-        /* Modals */
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 600px; background: #fff; color: #000; padding: 35px; border-radius: 25px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: none; z-index: 20000; max-height: 80vh; overflow-y: auto; }
-        .close-modal { float: right; cursor: pointer; font-size: 1.5rem; font-weight: bold; }
-
-        #dul-ai-trigger { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001; font-size: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        #dul-ai-trigger { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #fff; color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001; font-size: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
         footer { padding: 50px 0; text-align: center; font-size: 0.7rem; opacity: 0.6; }
+        .policy-link { cursor: pointer; text-decoration: underline; margin-top: 10px; display: block; }
 
-        /* BG Colors */
-        body.red-bg { background: var(--imperial-red); color: #fff; }
-        body.blue-bg { background: var(--royal-blue); color: #fff; }
-        body.green-bg { background: var(--emerald-green); color: #fff; }
-        body.orange-bg { background: var(--golden-yellow); color: #fff; }
-        body.black-bg { background: var(--obsidian-black); color: #fff; }
+        body.red-bg { background: var(--imperial-red); }
+        body.blue-bg { background: var(--royal-blue); }
+        body.green-bg { background: var(--emerald-green); }
+        body.orange-bg { background: var(--golden-yellow); }
+        body.black-bg { background: var(--obsidian-black); }
     </style>
 </head>
 <body id="main">
 
-    <nav>
-        <div class="logo" onclick="location.reload()">DUL®</div>
-        <div class="nav-right">
-            <button class="lang-btn" onclick="toggleLang()">MN / EN</button>
-            <div class="how-btn" id="how-btn" onclick="openModal('guide-modal')">Process</div>
-            <div class="cart-widget" onclick="showCart()" id="cart-ui">🛒 CART: 0₮</div>
-        </div>
-    </nav>
+    <div id="loader"><div class="liquid-glass">DUL®</div></div>
 
-    <div id="guide-modal" class="modal">
-        <span class="close-modal" onclick="closeModal('guide-modal')">×</span>
-        <h2 id="m-guide-title"></h2>
-        <div id="m-guide-content"></div>
+    <div id="main-content">
+        <nav>
+            <div class="logo" onclick="location.reload()">DUL®</div>
+            <div class="nav-right">
+                <button class="lang-btn" onclick="toggleLang()">MN / EN</button>
+                <div class="how-btn" id="how-btn" onclick="openModal('guide-modal')">Process</div>
+                <div class="cart-widget" onclick="showCart()" id="cart-ui">🛒 CART: 0₮</div>
+            </div>
+        </nav>
+
+        <div id="guide-modal" class="modal">
+            <span class="close-modal" onclick="closeModal('guide-modal')">×</span>
+            <h2 id="m-title"></h2>
+            <div id="m-content"></div>
+        </div>
+
+        <header>
+            <h1>DUL SHOP</h1>
+            <div class="sub-header" id="sub-header"></div>
+        </header>
+
+        <div class="container">
+            <div class="card" onclick="select(this, 'red-bg')">
+                <img src="red_candle-removebg-preview.png">
+                <div class="info">
+                    <h3 class="p-name">Imperial Crimson</h3>
+                    <span class="p-desc"></span><p>1,550₮</p>
+                    <button class="order-btn add-btn" onclick="addToCart('Imperial Crimson', 1550)"></button>
+                </div>
+            </div>
+
+            <div class="card" onclick="select(this, 'blue-bg')">
+                <img src="blue_candle-removebg-preview.png">
+                <div class="info">
+                    <h3 class="p-name">Royal Sapphire</h3>
+                    <span class="p-desc"></span><p>2,450₮</p>
+                    <button class="order-btn add-btn" onclick="addToCart('Royal Sapphire', 2450)"></button>
+                </div>
+            </div>
+
+            <div class="card" onclick="select(this, 'green-bg')">
+                <img src="green_candle-removebg-preview.png">
+                <div class="info">
+                    <h3 class="p-name">Emerald Majesty</h3>
+                    <span class="p-desc"></span><p>3,000₮</p>
+                    <button class="order-btn add-btn" onclick="addToCart('Emerald Majesty', 3000)"></button>
+                </div>
+            </div>
+
+            <div class="card" onclick="select(this, 'orange-bg')">
+                <img src="yellow_candle-removebg-preview.png">
+                <div class="info">
+                    <h3 class="p-name">Golden Aurelia</h3>
+                    <span class="p-desc"></span><p>2,500₮</p>
+                    <button class="order-btn add-btn" onclick="addToCart('Golden Aurelia', 2500)"></button>
+                </div>
+            </div>
+
+            <div class="card" onclick="select(this, 'black-bg')">
+                <img src="black_candle-removebg-preview.png">
+                <div class="info">
+                    <h3 class="p-name">Obsidian Noir</h3>
+                    <span class="p-desc"></span><p>4,000₮</p>
+                    <button class="order-btn add-btn" onclick="addToCart('Obsidian Noir', 4000)"></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="chat-box">
+            <div class="chat-header">DUL® INTEL AI</div>
+            <div id="chat-body"><div class="msg ai-msg" id="ai-init"></div></div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="...">
+                <button class="send-btn" onclick="handleUserInput()">></button>
+            </div>
+        </div>
+        <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
+
+        <footer>
+            © 2026 DUL® OFFICIAL | Created by Zelme
+            <span class="policy-link" id="policy-btn" onclick="openPolicy()">Refund Policy</span>
+        </footer>
     </div>
-
-    <header>
-        <h1>DUL SHOP</h1>
-        <div class="sub-header" id="sub-header"></div>
-    </header>
-
-    <div class="container">
-        <div class="card" onclick="select(this, 'red-bg')">
-            <img src="red_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Imperial Crimson</h3>
-                <span class="p-desc"></span><p>1,550₮</p>
-                <button class="order-btn add-btn" onclick="addToCart('Imperial Crimson', 1550)"></button>
-            </div>
-        </div>
-
-        <div class="card" onclick="select(this, 'blue-bg')">
-            <img src="blue_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Royal Sapphire</h3>
-                <span class="p-desc"></span><p>2,450₮</p>
-                <button class="order-btn add-btn" onclick="addToCart('Royal Sapphire', 2450)"></button>
-            </div>
-        </div>
-
-        <div class="card" onclick="select(this, 'green-bg')">
-            <img src="green_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Emerald Majesty</h3>
-                <span class="p-desc"></span><p>3,000₮</p>
-                <button class="order-btn add-btn" onclick="addToCart('Emerald Majesty', 3000)"></button>
-            </div>
-        </div>
-
-        <div class="card" onclick="select(this, 'orange-bg')">
-            <img src="yellow_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Golden Aurelia</h3>
-                <span class="p-desc"></span><p>2,500₮</p>
-                <button class="order-btn add-btn" onclick="addToCart('Golden Aurelia', 2500)"></button>
-            </div>
-        </div>
-
-        <div class="card" onclick="select(this, 'black-bg')">
-            <img src="black_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Obsidian Noir</h3>
-                <span class="p-desc"></span><p>4,000₮</p>
-                <button class="order-btn add-btn" onclick="addToCart('Obsidian Noir', 4000)"></button>
-            </div>
-        </div>
-    </div>
-
-    <div id="chat-box">
-        <div class="chat-header">DUL® INTEL AI</div>
-        <div id="chat-body"><div class="msg ai-msg" id="ai-init"></div></div>
-        <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="...">
-            <button class="send-btn" onclick="handleUserInput()">></button>
-        </div>
-    </div>
-    <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
-
-    <footer>© 2026 DUL® OFFICIAL | Created by Zelme</footer>
 
     <script>
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('main-content').style.opacity = '1';
+                }, 1000);
+            }, 3000);
+        };
+
         let currentLang = 'EN';
         let totalPrice = 0;
         let cartItems = [];
@@ -191,29 +198,23 @@
         const translations = {
             MN: {
                 how: "Хийх заавар", cart: "САГС", sub: "Гараар хийсэн тансаг лаа", add: "Сагслах",
+                policy: "Буцаалтын нөхцөл",
                 gTitle: "DUL® ГАР АРГААР ХИЙХ ДАРААЛАЛ",
-                gContent: `<p><b>1. Түүхий эд:</b> 100% органик шар буурцгийн лав сонгоно.</p><p><b>2. Хайлуулах:</b> Лавыг 80.5°C хэмд нарийн хайлуулна.</p><p><b>3. Үнэр нэрэх:</b> Үнэрт тосыг 10%-ийн харьцаатай нэрнэ.</p><p><b>4. Гол бэхлэх:</b> Байгалийн хөвөн голыг гараар бэхэлнэ.</p><p><b>5. Цутгалт:</b> Гадаргууг толигор болгохын тулд удаан цутгана.</p><p><b>6. Амраах:</b> 48 цагийн турш үнэрийг шингээнэ.</p>`,
-                aiHi: "Сайн уу? Би DUL туслах байна. Юугаар туслах уу?",
-                pDesc: [
-                    "Gal: Гал халуун, хүчирхэг (Rose & Spices)",
-                    "Dul: Тайвшруулах дөл (Sea Salt & Orchid)",
-                    "Grass: Шинэ сэргэг зүлэг (Green Tea & Mint)",
-                    "Aurelia: Алтан дулаан (Vanilla & Amber)",
-                    "Noir: Гүн нууцлаг (Oud & Sandalwood)"
-                ]
+                gContent: `<p>1. Түүхий эд сонголт.</p><p>2. Хайлуулах процесс.</p><p>3. Үнэр нэрэх.</p><p>4. Цутгалт ба амраах.</p>`,
+                pTitle: "БУЦААЛТЫН НӨХЦӨЛ",
+                pContent: `<p>1. 24 цагийн дотор буцаах боломжтой.</p><p>2. Лаа асаагүй байх шаардлагатай.</p><p>3. Хүргэлтийн төлбөр буцаагдахгүй.</p>`,
+                aiHi: "Сайн уу? Би DUL туслах байна.",
+                pDesc: ["Gal: Гал халуун", "Dul: Тайвшруулах дөл", "Grass: Шинэ сэргэг", "Aurelia: Алтан дулаан", "Noir: Гүн нууцлаг"]
             },
             EN: {
                 how: "Process", cart: "CART", sub: "Handmade & Luxury Scented Candles", add: "Add to Cart",
+                policy: "Refund Policy",
                 gTitle: "THE DUL® CRAFTING PROCESS",
-                gContent: `<p><b>1. Sourcing:</b> 100% organic soy wax is selected.</p><p><b>2. Melting:</b> Precision melting at 80.5°C.</p><p><b>3. Infusion:</b> 10% premium oil ratio blend.</p><p><b>4. Wicking:</b> Hand-centered natural cotton wicks.</p><p><b>5. Pouring:</b> Slow-pour for a flawless finish.</p><p><b>6. Curing:</b> 48-hour resting period for deep scent.</p>`,
-                aiHi: "Hi! I'm DUL Assistant. How can I help you?",
-                pDesc: [
-                    "Gal: Fiery & Powerful (Rose & Spices)",
-                    "Dul: Calming Flame (Sea Salt & Orchid)",
-                    "Grass: Fresh Cut Grass (Green Tea & Mint)",
-                    "Aurelia: Golden Warmth (Vanilla & Amber)",
-                    "Noir: Deep & Mysterious (Oud & Sandalwood)"
-                ]
+                gContent: `<p>1. Sourcing organic wax.</p><p>2. Precision melting.</p><p>3. Oil infusion.</p><p>4. Curing for 48 hours.</p>`,
+                pTitle: "REFUND POLICY",
+                pContent: `<p>1. Refund available within 24 hours.</p><p>2. Candle must be unlit.</p><p>3. Delivery fees are non-refundable.</p>`,
+                aiHi: "Hi! I'm DUL Assistant.",
+                pDesc: ["Gal: Fiery", "Dul: Calming", "Grass: Fresh", "Aurelia: Golden", "Noir: Deep"]
             }
         };
 
@@ -221,24 +222,35 @@
             currentLang = currentLang === 'EN' ? 'MN' : 'EN';
             const t = translations[currentLang];
             document.getElementById('how-btn').innerText = t.how;
+            document.getElementById('policy-btn').innerText = t.policy;
             document.getElementById('sub-header').innerText = t.sub;
-            document.getElementById('m-guide-title').innerText = t.gTitle;
-            document.getElementById('m-guide-content').innerHTML = t.gContent;
             document.getElementById('ai-init').innerText = t.aiHi;
             document.querySelectorAll('.add-btn').forEach(b => b.innerText = t.add);
             document.querySelectorAll('.p-desc').forEach((s, i) => s.innerText = t.pDesc[i]);
             updateCartUI();
         }
 
+        function openModal(id) { 
+            const t = translations[currentLang];
+            document.getElementById('m-title').innerText = t.gTitle;
+            document.getElementById('m-content').innerHTML = t.gContent;
+            document.getElementById(id).style.display = 'block'; 
+        }
+
+        function openPolicy() {
+            const t = translations[currentLang];
+            document.getElementById('m-title').innerText = t.pTitle;
+            document.getElementById('m-content').innerHTML = t.pContent;
+            document.getElementById('guide-modal').style.display = 'block';
+        }
+
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
         function select(el, bg) {
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
             document.getElementById('main').className = bg;
         }
-
-        function openModal(id) { document.getElementById(id).style.display = 'block'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function toggleDul() { const cb = document.getElementById('chat-box'); cb.style.display = cb.style.display === 'flex' ? 'none' : 'flex'; }
 
         function addToCart(name, price) {
             totalPrice += price; cartItems.push(name); updateCartUI();
@@ -249,20 +261,13 @@
         }
 
         function showCart() { alert(cartItems.length ? cartItems.join(", ") : "Empty"); }
+        function toggleDul() { const cb = document.getElementById('chat-box'); cb.style.display = cb.style.display === 'flex' ? 'none' : 'flex'; }
 
         function handleUserInput() {
             const input = document.getElementById('user-input');
-            const val = input.value.trim();
-            if(!val) return;
-            addMsg(val, true);
-            input.value = '';
-            setTimeout(() => {
-                let reply = currentLang === 'MN' ? "Үнэ, хүргэлт эсвэл үнэрүүдийн талаар асууна уу." : "Please ask about prices, delivery, or scents.";
-                const q = val.toLowerCase();
-                if(q.includes("үнэ") || q.includes("price")) reply = currentLang === 'MN' ? "Үнэ 1,550₮ - 4,000₮ хооронд байна." : "Prices range from 1,550₮ to 4,000₮.";
-                if(q.includes("үнэр") || q.includes("scent")) reply = currentLang === 'MN' ? "Манай лаанууд Гал, Дөл, Зүлэг, Алт, Ноар гэсэн үнэртэй." : "We have Gal, Dul, Grass, Aurelia, and Noir scents.";
-                addMsg(reply, false);
-            }, 600);
+            if(!input.value.trim()) return;
+            addMsg(input.value, true); input.value = '';
+            setTimeout(() => addMsg(currentLang === 'MN' ? "Туслахад бэлэн байна." : "Ready to help.", false), 600);
         }
 
         function addMsg(txt, isUser) {
