@@ -45,13 +45,11 @@
         /* Guide Modal */
         #guide-modal {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 80%; max-width: 500px; background: #fff; color: #000;
+            width: 85%; max-width: 500px; background: #fff; color: #000;
             padding: 30px; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             display: none; z-index: 20000; overflow-y: auto; max-height: 80vh;
         }
-        #guide-modal h2 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 0; }
-        #guide-modal p { font-size: 0.85rem; line-height: 1.6; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .close-guide { float: right; cursor: pointer; font-weight: bold; font-size: 1.2rem; }
+        .close-guide { float: right; cursor: pointer; font-weight: bold; font-size: 1.5rem; }
 
         header { margin-top: 150px; text-align: center; }
         header h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 20px; margin-bottom: 10px; }
@@ -76,7 +74,7 @@
 
         footer {
             position: fixed; bottom: 15px; width: 100%;
-            text-align: center; font-size: 0.65rem; letter-spacing: 1px; opacity: 0.6;
+            text-align: center; font-size: 0.6rem; letter-spacing: 1px; opacity: 0.6;
         }
 
         #dul-ai-trigger {
@@ -91,10 +89,10 @@
             background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             display: none; flex-direction: column; z-index: 10000; overflow: hidden; color: #333;
         }
-        .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; }
-        #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.8rem; }
+        .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; text-align: center; letter-spacing: 1px; }
+        #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.75rem; line-height: 1.4; }
         .chat-options { padding: 10px; display: flex; gap: 5px; background: #f9f9f9; }
-        .chat-options button { flex: 1; padding: 5px; font-size: 0.6rem; cursor: pointer; border: 1px solid #ddd; }
+        .chat-options button { flex: 1; padding: 8px; font-size: 0.6rem; cursor: pointer; border: 1px solid #ddd; background: #fff; }
 
         .floating-candle { position: absolute; pointer-events: none; animation: drift 20s linear infinite; }
         @keyframes drift { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(var(--mx), var(--my)) rotate(360deg); } }
@@ -112,22 +110,24 @@
     <nav>
         <div class="logo" onclick="location.reload()">DUL®</div>
         <div class="nav-right">
-            <div class="how-btn" onclick="toggleGuide()">How it's made? / Заавар</div>
+            <div class="how-btn" onclick="toggleGuide()">Guide / Заавар</div>
             <div class="cart-widget" onclick="showCart()" id="cart-ui">🛒 CART: 0₮</div>
         </div>
     </nav>
 
     <div id="guide-modal">
         <span class="close-guide" onclick="toggleGuide()">×</span>
-        <h2>How to make DUL® candles?</h2>
-        <p><b>Step 1:</b> Melt natural soy wax at 80°C. <br><i>(1-р алхам: Байгалийн шар буурцгийн лавыг 80°C-т хайлуулна.)</i></p>
-        <p><b>Step 2:</b> Add premium fragrance oils. <br><i>(2-р алхам: Тансаг зэрэглэлийн үнэрт тосоо нэмнэ.)</i></p>
-        <p><b>Step 3:</b> Place the cotton wick and pour carefully. <br><i>(3-р алхам: Хөвөн голыг байрлуулж, лаваа болгоомжтой цутгана.)</i></p>
-        <p><b>Step 4:</b> Let it cool for 24 hours for the perfect scent. <br><i>(4-р алхам: Үнэрийг нь бүрэн шингээхийн тулд 24 цаг хөргөнө.)</i></p>
+        <h2 style="font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">CANDLE PROCESS / ХИЙХ ЗААВАР</h2>
+        <div style="margin-top: 15px;">
+            <p><b>1. Natural Wax / Байгалийн лав:</b> <br>Melt soy wax at 80°C. <br>(Шар буурцгийн лавыг 80°C-т хайлуулна.)</p>
+            <p><b>2. Premium Scents / Тансаг үнэр:</b> <br>Add fragrance oils. <br>(Үнэрт тосоо нэмж найруулна.)</p>
+            <p><b>3. Hand Pour / Гар цутгалт:</b> <br>Slow pour into glass jars. <br>(Шилэн савандаа зөөлөн цутгана.)</p>
+            <p><b>4. Curing / Хөргөлт:</b> <br>Wait 24 hours for best scent. <br>(Үнэрийг гаргахын тулд 24 цаг хөргөнө.)</p>
+        </div>
     </div>
 
     <footer>
-        УЛААНБААТАР ХОТ, 1-Р СУРГУУЛЬ | DUL® OFFICIAL<br>
+        ULAANBAATAR, SCHOOL NO.1 | DUL® OFFICIAL<br>
         © 2026 DUL Inc. Created by Zelme
     </footer>
 
@@ -141,60 +141,60 @@
             <img src="red_candle-removebg-preview.png">
             <div class="info">
                 <h3>Infrared</h3>
-                <span class="desc">Handmade • Гоё үнэртэй</span>
+                <span class="desc">Handmade • Scented / Гараар хийсэн</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Infrared', 2000)">Add to Cart</button>
-                <button class="order-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order Now</button>
+                <button class="order-btn" onclick="addToCart('Infrared', 2000)">Add to Cart / Сагслах</button>
+                <button class="order-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order / Захиалах</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'blue-bg')">
             <img src="blue_candle-removebg-preview.png">
             <div class="info">
                 <h3>Heat Blue</h3>
-                <span class="desc">Premium • Тансаг үнэр</span>
+                <span class="desc">Premium • Relaxing / Тайвшруулах</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart</button>
-                <button class="order-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order Now</button>
+                <button class="order-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart / Сагслах</button>
+                <button class="order-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order / Захиалах</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'green-bg')">
             <img src="green_candle-removebg-preview.png">
             <div class="info">
                 <h3>Greenslate</h3>
-                <span class="desc">Natural • Сэргээх үнэр</span>
+                <span class="desc">Natural • Fresh / Сэргээх үнэр</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart</button>
-                <button class="order-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order Now</button>
+                <button class="order-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart / Сагслах</button>
+                <button class="order-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order / Захиалах</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'orange-bg')">
             <img src="yellow_candle-removebg-preview.png">
             <div class="info">
                 <h3>Solar Flare</h3>
-                <span class="desc">Organic • Дулаан үнэр</span>
+                <span class="desc">Organic • Warm / Дулаан үнэр</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Solar Flare', 2000)">Add to Cart</button>
-                <button class="order-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')">Order Now</button>
+                <button class="order-btn" onclick="addToCart('Solar Flare', 2000)">Add to Cart / Сагслах</button>
+                <button class="order-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')">Order / Захиалах</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'black-bg')">
             <img src="black_candle-removebg-preview.png">
             <div class="info">
                 <h3>Obsidian</h3>
-                <span class="desc">Luxury • Гүн тансаг үнэр</span>
+                <span class="desc">Luxury • Deep / Гүн тансаг</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Obsidian', 2000)">Add to Cart</button>
-                <button class="order-btn" onclick="order(event, 'black_candle-removebg-preview.png')">Order Now</button>
+                <button class="order-btn" onclick="addToCart('Obsidian', 2000)">Add to Cart / Сагслах</button>
+                <button class="order-btn" onclick="order(event, 'black_candle-removebg-preview.png')">Order / Захиалах</button>
             </div>
         </div>
     </div>
 
     <div id="chat-box">
-        <div class="chat-header">DUL AI ASSISTANT</div>
-        <div id="chat-body">Сайн уу? Би Дөл байна. Манай лаанууд бүгд гараар хийсэн.</div>
+        <div class="chat-header">DUL® AI ASSISTANT</div>
+        <div id="chat-body">Hi! I'm Dul. Our candles are 100% handmade. <br>(Сайн уу? Би Дөл байна. Манай лаанууд 100% гараар хийгдсэн.)</div>
         <div class="chat-options">
-            <button onclick="aiAsk('scent')">Үнэр</button>
-            <button onclick="aiAsk('handmade')">Чанар</button>
+            <button onclick="aiAsk('scent')">Scent / Үнэр</button>
+            <button onclick="aiAsk('quality')">Quality / Чанар</button>
         </div>
     </div>
     <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
@@ -223,8 +223,8 @@
         }
 
         function showCart() {
-            if(cartItems.length === 0) alert("Сагс хоосон байна.");
-            else alert("Таны сагсанд: \n" + cartItems.join(", ") + "\n\nНийт: " + totalPrice.toLocaleString() + "₮");
+            if(cartItems.length === 0) alert("Cart is empty / Сагс хоосон байна.");
+            else alert("Your Cart / Таны сагс: \n" + cartItems.join(", ") + "\n\nTotal / Нийт: " + totalPrice.toLocaleString() + "₮");
         }
 
         function toggleDul() {
@@ -234,8 +234,8 @@
 
         function aiAsk(type) {
             const body = document.getElementById('chat-body');
-            if(type === 'scent') body.innerHTML += `<p><b>Дөл:</b> Тансаг үнэр удаан хадгалагдана.</p>`;
-            if(type === 'handmade') body.innerHTML += `<p><b>Дөл:</b> Zelme бүх лаагаа өөрийн гараар хийдэг.</p>`;
+            if(type === 'scent') body.innerHTML += `<p><b>Dul:</b> We use premium oils. <br>(Бид хамгийн шилдэг үнэрт тосыг ашигладаг.)</p>`;
+            if(type === 'quality') body.innerHTML += `<p><b>Dul:</b> Every candle is made with love by Zelme. <br>(Лаа бүрийг Zelme сэтгэлээ гаргаж хийдэг.)</p>`;
             body.scrollTop = body.scrollHeight;
         }
 
