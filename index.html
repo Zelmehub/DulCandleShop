@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>DUL® | Official Store</title>
     <style>
+        /* ... (Өмнөх CSS хэвээрээ, нэмэлтүүд доор байна) ... */
         :root {
             --lexus-red: radial-gradient(circle, #8B0000 0%, #1A0000 100%);
             --lexus-blue: radial-gradient(circle, #002366 0%, #00081A 100%);
@@ -13,47 +14,17 @@
             --space-bg: radial-gradient(ellipse at bottom, #0D1117 0%, #000000 100%);
         }
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: #fff; color: #1a1a1a;
-            transition: background 0.8s ease;
-            overflow-x: hidden; min-height: 100vh;
-        }
-
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000;
-            background: rgba(255,255,255,0.01); backdrop-filter: blur(15px);
-        }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; transition: background 0.8s ease; overflow-x: hidden; min-height: 100vh; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000; background: rgba(255,255,255,0.01); backdrop-filter: blur(15px); }
         .logo { font-weight: 900; letter-spacing: 8px; font-size: 1.5rem; cursor: pointer; }
-        
         .nav-right { display: flex; align-items: center; gap: 15px; }
+        .lang-btn { font-size: 0.7rem; font-weight: bold; cursor: pointer; padding: 8px 12px; border: 1px solid currentColor; border-radius: 5px; background: transparent; transition: 0.3s; color: inherit; }
+        .how-btn { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid currentColor; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .cart-widget { background: #000; color: #fff; padding: 10px 20px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
 
-        .lang-btn {
-            font-size: 0.7rem; font-weight: bold; cursor: pointer;
-            padding: 8px 12px; border: 1px solid currentColor; border-radius: 5px;
-            background: transparent; transition: 0.3s; color: inherit;
-        }
-
-        .how-btn {
-            font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
-            border: 1px solid currentColor; padding: 10px 18px; border-radius: 20px;
-            cursor: pointer; font-weight: bold;
-        }
-
-        .cart-widget {
-            background: #000; color: #fff; padding: 10px 20px; border-radius: 30px;
-            font-size: 0.8rem; font-weight: bold; cursor: pointer;
-        }
-
-        /* Guide Modal - Improved & Longer */
-        #guide-modal {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 90%; max-width: 550px; background: #fff; color: #000;
-            padding: 40px; border-radius: 25px; box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-            display: none; z-index: 20000; overflow-y: auto; max-height: 85vh;
-        }
+        /* Modal Styles */
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: #fff; color: #000; padding: 30px; border-radius: 20px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: none; z-index: 20000; overflow-y: auto; max-height: 80vh; }
+        .close-modal { float: right; cursor: pointer; font-size: 1.5rem; font-weight: bold; }
 
         header { margin-top: 150px; text-align: center; }
         header h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 20px; margin-bottom: 10px; }
@@ -63,32 +34,21 @@
         .card { width: 175px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
         .card.active { transform: scale(1.25); z-index: 50; }
-
         .info { margin-top: 20px; opacity: 0; transition: 0.5s; }
         .card.active .info { opacity: 1; }
-        .order-btn {
-            background: none; border: 1px solid currentColor; color: inherit;
-            padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%;
-        }
+        .order-btn { background: none; border: 1px solid currentColor; color: inherit; padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%; }
 
-        footer { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 0.6rem; opacity: 0.6; pointer-events: none; }
+        footer { position: fixed; bottom: 0; width: 100%; text-align: center; padding: 15px 0; font-size: 0.6rem; background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); z-index: 900; }
+        .footer-links { margin-top: 5px; display: flex; justify-content: center; gap: 20px; }
+        .footer-links span { cursor: pointer; text-decoration: underline; opacity: 0.7; }
+        .footer-links span:hover { opacity: 1; }
 
-        #chat-box {
-            position: fixed; bottom: 150px; right: 30px; width: 280px; height: 350px;
-            background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            display: none; flex-direction: column; z-index: 10000; color: #333;
-        }
+        #chat-box { position: fixed; bottom: 100px; right: 30px; width: 280px; height: 350px; background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: none; flex-direction: column; z-index: 10000; color: #333; }
         .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; text-align: center; }
         #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.75rem; }
         .chat-options { padding: 10px; display: flex; gap: 5px; }
         .chat-options button { flex: 1; padding: 8px; font-size: 0.6rem; cursor: pointer; }
-
-        #dul-ai-trigger {
-            position: fixed; bottom: 80px; right: 30px; width: 60px; height: 60px;
-            background: #1a1a1a; color: #fff; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001;
-        }
+        #dul-ai-trigger { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001; }
 
         .floating-candle { position: absolute; pointer-events: none; animation: drift 20s linear infinite; }
         @keyframes drift { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(var(--mx), var(--my)) rotate(360deg); } }
@@ -107,16 +67,21 @@
         <div class="logo" onclick="location.reload()">DUL®</div>
         <div class="nav-right">
             <button class="lang-btn" onclick="toggleLang()">MN / EN</button>
-            <div class="how-btn" id="how-btn" onclick="toggleGuide()">Handmade Process</div>
+            <div class="how-btn" id="how-btn" onclick="openModal('guide-modal')">Process</div>
             <div class="cart-widget" onclick="showCart()" id="cart-ui">🛒 CART: 0₮</div>
         </div>
     </nav>
 
-    <div id="guide-modal">
-        <span style="float:right; cursor:pointer; font-size: 1.5rem;" onclick="toggleGuide()">×</span>
-        <h2 id="modal-title" style="letter-spacing: 2px; border-bottom: 2px solid #000; padding-bottom: 10px;">THE ART OF DUL®</h2>
-        <div id="modal-content" style="font-size: 0.9rem; line-height: 1.8; margin-top: 20px;">
-            </div>
+    <div id="guide-modal" class="modal">
+        <span class="close-modal" onclick="closeModal('guide-modal')">×</span>
+        <h2 id="m-guide-title">THE ART OF DUL®</h2>
+        <div id="m-guide-content"></div>
+    </div>
+
+    <div id="policy-modal" class="modal">
+        <span class="close-modal" onclick="closeModal('policy-modal')">×</span>
+        <h2 id="m-policy-title">POLICY</h2>
+        <div id="m-policy-content" style="font-size: 0.85rem; line-height: 1.6;"></div>
     </div>
 
     <header>
@@ -125,61 +90,16 @@
     </header>
 
     <div class="container" id="c">
-        <div class="card" onclick="select(this, 'red-bg')">
-            <img src="red_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Infrared</h3>
-                <span class="p-desc">Handmade • Scented</span>
-                <p>2,000₮</p>
-                <button class="order-btn add-cart-btn" onclick="addToCart('Infrared', 2000)">Add to Cart</button>
-                <button class="order-btn order-now-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order Now</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'blue-bg')">
-            <img src="blue_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Heat Blue</h3>
-                <span class="p-desc">Premium • Relaxing</span>
-                <p>2,000₮</p>
-                <button class="order-btn add-cart-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart</button>
-                <button class="order-btn order-now-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order Now</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'green-bg')">
-            <img src="green_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Greenslate</h3>
-                <span class="p-desc">Natural • Fresh</span>
-                <p>2,000₮</p>
-                <button class="order-btn add-cart-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart</button>
-                <button class="order-btn order-now-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order Now</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'orange-bg')">
-            <img src="yellow_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Solar Flare</h3>
-                <span class="p-desc">Organic • Warm</span>
-                <p>2,000₮</p>
-                <button class="order-btn add-cart-btn" onclick="addToCart('Solar Flare', 2000)">Add to Cart</button>
-                <button class="order-btn order-now-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')">Order Now</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'black-bg')">
-            <img src="black_candle-removebg-preview.png">
-            <div class="info">
-                <h3 class="p-name">Obsidian</h3>
-                <span class="p-desc">Luxury • Deep</span>
-                <p>2,000₮</p>
-                <button class="order-btn add-cart-btn" onclick="addToCart('Obsidian', 2000)">Add to Cart</button>
-                <button class="order-btn order-now-btn" onclick="order(event, 'black_candle-removebg-preview.png')">Order Now</button>
-            </div>
-        </div>
+        <div class="card" onclick="select(this, 'red-bg')"><img src="red_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Infrared</h3><span class="p-desc"></span><p>2,000₮</p><button class="order-btn add-btn" onclick="addToCart('Infrared', 2000)"></button><button class="order-btn ord-btn" onclick="order(event, 'red_candle-removebg-preview.png')"></button></div></div>
+        <div class="card" onclick="select(this, 'blue-bg')"><img src="blue_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Heat Blue</h3><span class="p-desc"></span><p>2,000₮</p><button class="order-btn add-btn" onclick="addToCart('Heat Blue', 2000)"></button><button class="order-btn ord-btn" onclick="order(event, 'blue_candle-removebg-preview.png')"></button></div></div>
+        <div class="card" onclick="select(this, 'green-bg')"><img src="green_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Greenslate</h3><span class="p-desc"></span><p>2,000₮</p><button class="order-btn add-btn" onclick="addToCart('Greenslate', 2000)"></button><button class="order-btn ord-btn" onclick="order(event, 'green_candle-removebg-preview.png')"></button></div></div>
+        <div class="card" onclick="select(this, 'orange-bg')"><img src="yellow_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Solar Flare</h3><span class="p-desc"></span><p>2,000₮</p><button class="order-btn add-btn" onclick="addToCart('Solar Flare', 2000)"></button><button class="order-btn ord-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')"></button></div></div>
+        <div class="card" onclick="select(this, 'black-bg')"><img src="black_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Obsidian</h3><span class="p-desc"></span><p>2,000₮</p><button class="order-btn add-btn" onclick="addToCart('Obsidian', 2000)"></button><button class="order-btn ord-btn" onclick="order(event, 'black_candle-removebg-preview.png')"></button></div></div>
     </div>
 
     <div id="chat-box">
         <div class="chat-header">DUL® AI</div>
-        <div id="chat-body">Hi! I'm Dul. Our candles are 100% handmade.</div>
+        <div id="chat-body">Hi! I'm Dul.</div>
         <div class="chat-options">
             <button onclick="aiAsk('scent')" id="ai-opt-1">Scent</button>
             <button onclick="aiAsk('quality')" id="ai-opt-2">Quality</button>
@@ -187,7 +107,13 @@
     </div>
     <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
 
-    <footer id="footer">ULAANBAATAR | DUL® OFFICIAL | Created by Zelme</footer>
+    <footer>
+        <div id="footer-text">© 2026 DUL® OFFICIAL | Created by Zelme</div>
+        <div class="footer-links">
+            <span onclick="showPolicy('review')" id="f-review">Review Policy</span>
+            <span onclick="showPolicy('return')" id="f-return">Return Policy</span>
+        </div>
+    </footer>
 
     <script>
         let currentLang = 'EN';
@@ -196,35 +122,31 @@
 
         const translations = {
             MN: {
-                how: "Хийх заавар", cart: "САГС", sub: "Гараар хийсэн тансаг үнэрт лаа",
+                how: "Хийх заавар", cart: "САГС", sub: "Гараар хийсэн тансаг лаа",
                 add: "Сагслах", order: "Захиалах",
-                mTitle: "ЛАА ХИЙХ УРЛАГ",
-                mContent: `
-                    <p><b>1. Лав бэлтгэх:</b> 100% байгалийн шар буурцгийн лавыг яг 80°C хэмд хайлуулна. Энэ нь лааг цэвэрхэн шатахад тусалдаг.</p>
-                    <p><b>2. Үнэр оруулах:</b> Хайлсан лавандаа дээд зэрэглэлийн үнэрт тосыг тунг нь нарийн тааруулж холино.</p>
-                    <p><b>3. Гол байрлуулах:</b> Байгалийн хөвөн голыг савны төв хэсэгт бэхэлж, лаваа маш удаанаар цутгана.</p>
-                    <p><b>4. Хөргөлт:</b> Лааг тасалгааны хэмд 24-48 цаг амраана. Ингэснээр үнэр нь лавандаа бүрэн шингэдэг.</p>
-                    <p><b>5. Шалгалт:</b> Лаа бүрийг Zelme өөрийн биеэр шалгаж, чанарын баталгаа гаргадаг.</p>`,
+                gTitle: "ЛАА ХИЙХ УРЛАГ",
+                gContent: "<p>1. Шар буурцгийн лавыг 80°C-т хайлуулна.</p><p>2. Үнэрт тосоо нэмнэ.</p><p>3. Шилэндээ зөөлөн цутгана.</p><p>4. 24-48 цаг хөргөнө.</p>",
+                revTitle: "СЭТГЭГДЛИЙН ЖУРАМ",
+                revContent: "<p>• Сэтгэгдэл нь бодит худалдан авалтад үндэслэсэн байх ёстой.</p><p>• Бусдыг доромжилсон утгатай үг хэрэглэхийг хориглоно.</p><p>• Бид чанарыг сайжруулахын тулд бүх шүүмжийг нээлттэй хүлээж авна.</p>",
+                retTitle: "БУЦААЛТЫН НӨХЦӨЛ",
+                retContent: "<p>• Лааг асаагаагүй, анхны байдлаар нь 24 цагийн дотор буцааж болно.</p><p>• Хэрэв хүргэлтийн явцад гэмтсэн бол шууд солиулж авна уу.</p><p>• Асаасан лааг буцаах боломжгүй.</p>",
                 aiHi: "Сайн уу? Би Дөл байна. Манай лаанууд 100% гараар хийгдсэн.",
-                aiOpt1: "Үнэр", aiOpt2: "Чанар",
-                aiScent: "Бид дэлхийн хамгийн шилдэг үнэрт тосыг ашигладаг.", aiQuality: "Zelme лаа бүрийг сэтгэлээ гаргаж хийдэг.",
-                empty: "Сагс хоосон байна.", footer: "УЛААНБААТАР | DUL® OFFICIAL | Zelme бүтээв",
+                aiOpt1: "Үнэр", aiOpt2: "Чанар", aiScent: "Бид тансаг тос ашигладаг.", aiQuality: "Zelme сэтгэлээ гаргаж хийдэг.",
+                empty: "Сагс хоосон байна.", fReview: "Сэтгэгдлийн журам", fReturn: "Буцаалтын нөхцөл",
                 pDesc: ["Гараар хийсэн", "Тайвшруулах", "Сэргээх үнэр", "Дулаан үнэр", "Гүн тансаг"]
             },
             EN: {
-                how: "Handmade Process", cart: "CART", sub: "Handmade & Luxury Scented Candles",
+                how: "Process", cart: "CART", sub: "Handmade & Luxury Scented Candles",
                 add: "Add to Cart", order: "Order Now",
-                mTitle: "THE ART OF DUL®",
-                mContent: `
-                    <p><b>1. Wax Melting:</b> We melt 100% natural soy wax at exactly 80°C for a clean and eco-friendly burn.</p>
-                    <p><b>2. Fragrance Infusion:</b> Premium concentrated fragrance oils are blended into the hot wax at the perfect moment.</p>
-                    <p><b>3. Wick Setting:</b> Eco-friendly cotton wicks are centered by hand before the wax is slowly poured into glass jars.</p>
-                    <p><b>4. Curing Process:</b> Each candle rests for 24-48 hours to ensure the scent bonds perfectly with the wax.</p>
-                    <p><b>5. Quality Control:</b> Every single candle is inspected by Zelme to ensure it meets our luxury standards.</p>`,
+                gTitle: "THE ART OF DUL®",
+                gContent: "<p>1. Melt soy wax at 80°C.</p><p>2. Add fragrance oils.</p><p>3. Pour slowly into glass.</p><p>4. Wait 24-48 hours.</p>",
+                revTitle: "REVIEW POLICY",
+                revContent: "<p>• Reviews must be based on actual purchases.</p><p>• Offensive language is strictly prohibited.</p><p>• We welcome all feedback to improve our quality.</p>",
+                retTitle: "RETURN POLICY",
+                retContent: "<p>• Items can be returned within 24 hours if unused.</p><p>• Damaged items during delivery will be replaced immediately.</p><p>• Lit candles cannot be returned.</p>",
                 aiHi: "Hi! I'm Dul. Our candles are 100% handmade.",
-                aiOpt1: "Scent", aiOpt2: "Quality",
-                aiScent: "We use the world's finest fragrance oils.", aiQuality: "Every candle is made with love by Zelme.",
-                empty: "Cart is empty.", footer: "ULAANBAATAR | DUL® OFFICIAL | Created by Zelme",
+                aiOpt1: "Scent", aiOpt2: "Quality", aiScent: "We use premium oils.", aiQuality: "Made with love by Zelme.",
+                empty: "Cart is empty.", fReview: "Review Policy", fReturn: "Return Policy",
                 pDesc: ["Handmade • Scented", "Premium • Relaxing", "Natural • Fresh", "Organic • Warm", "Luxury • Deep"]
             }
         };
@@ -232,24 +154,31 @@
         function toggleLang() {
             currentLang = currentLang === 'EN' ? 'MN' : 'EN';
             const t = translations[currentLang];
-            
             document.getElementById('how-btn').innerText = t.how;
             document.getElementById('cart-ui').innerText = `🛒 ${t.cart}: ${totalPrice.toLocaleString()}₮`;
             document.getElementById('sub-header').innerText = t.sub;
-            document.getElementById('modal-title').innerText = t.mTitle;
-            document.getElementById('modal-content').innerHTML = t.mContent;
+            document.getElementById('m-guide-title').innerText = t.gTitle;
+            document.getElementById('m-guide-content').innerHTML = t.gContent;
             document.getElementById('chat-body').innerText = t.aiHi;
             document.getElementById('ai-opt-1').innerText = t.aiOpt1;
             document.getElementById('ai-opt-2').innerText = t.aiOpt2;
-            document.getElementById('footer').innerText = t.footer;
-
-            document.querySelectorAll('.add-cart-btn').forEach(b => b.innerText = t.add);
-            document.querySelectorAll('.order-now-btn').forEach(b => b.innerText = t.order);
+            document.getElementById('f-review').innerText = t.fReview;
+            document.getElementById('f-return').innerText = t.fReturn;
+            document.querySelectorAll('.add-btn').forEach(b => b.innerText = t.add);
+            document.querySelectorAll('.ord-btn').forEach(b => b.innerText = t.order);
             document.querySelectorAll('.p-desc').forEach((s, i) => s.innerText = t.pDesc[i]);
         }
+        toggleLang(); toggleLang(); // Init
 
-        // Initialize content
-        toggleLang(); toggleLang(); 
+        function openModal(id) { document.getElementById(id).style.display = 'block'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function showPolicy(type) {
+            const t = translations[currentLang];
+            document.getElementById('m-policy-title').innerText = type === 'review' ? t.revTitle : t.retTitle;
+            document.getElementById('m-policy-content').innerHTML = type === 'review' ? t.revContent : t.retContent;
+            openModal('policy-modal');
+        }
 
         function addToCart(name, price) {
             totalPrice += price; cartItems.push(name);
@@ -261,19 +190,9 @@
             else alert(cartItems.join(", ") + "\nTotal: " + totalPrice.toLocaleString() + "₮");
         }
 
-        function toggleGuide() {
-            const m = document.getElementById('guide-modal');
-            m.style.display = m.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function toggleDul() {
-            const c = document.getElementById('chat-box');
-            c.style.display = c.style.display === 'flex' ? 'none' : 'flex';
-        }
-
+        function toggleDul() { const c = document.getElementById('chat-box'); c.style.display = c.style.display === 'flex' ? 'none' : 'flex'; }
         function aiAsk(type) {
-            const b = document.getElementById('chat-body');
-            const t = translations[currentLang];
+            const b = document.getElementById('chat-body'); const t = translations[currentLang];
             b.innerHTML += `<p><b>Dul:</b> ${type === 'scent' ? t.aiScent : t.aiQuality}</p>`;
             b.scrollTop = b.scrollHeight;
         }
@@ -281,17 +200,14 @@
         function select(el, bg) {
             if(document.body.classList.contains('space-active')) return;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            document.getElementById('main').className = bg;
+            el.classList.add('active'); document.getElementById('main').className = bg;
         }
 
         function order(e, src) {
-            e.stopPropagation();
-            document.getElementById('main').className = 'space-active';
+            e.stopPropagation(); document.getElementById('main').className = 'space-active';
             document.getElementById('c').style.opacity = '0';
             for (let i = 0; i < 15; i++) {
-                let img = document.createElement('img'); img.src = src;
-                img.className = 'floating-candle';
+                let img = document.createElement('img'); img.src = src; img.className = 'floating-candle';
                 img.style.left = Math.random()*100+"vw"; img.style.top = Math.random()*100+"vh";
                 img.style.setProperty('--mx', (Math.random()-0.5)*1000+"px");
                 img.style.setProperty('--my', (Math.random()-0.5)*1000+"px");
