@@ -30,69 +30,65 @@
         
         .nav-right { display: flex; align-items: center; gap: 15px; }
 
+        .lang-btn {
+            font-size: 0.7rem; font-weight: bold; cursor: pointer;
+            padding: 5px 10px; border: 1px solid #000; border-radius: 5px;
+            background: #fff; transition: 0.3s;
+        }
+        .lang-btn:hover { background: #000; color: #fff; }
+
         .how-btn {
             font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
             border: 1px solid currentColor; padding: 8px 15px; border-radius: 20px;
-            cursor: pointer; font-weight: bold; transition: 0.3s;
+            cursor: pointer; font-weight: bold;
         }
-        .how-btn:hover { background: #1a1a1a; color: #fff; }
 
         .cart-widget {
             background: #000; color: #fff; padding: 10px 20px; border-radius: 30px;
-            font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.3s;
+            font-size: 0.8rem; font-weight: bold; cursor: pointer;
         }
 
-        /* Guide Modal */
         #guide-modal {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 85%; max-width: 500px; background: #fff; color: #000;
+            width: 85%; max-width: 450px; background: #fff; color: #000;
             padding: 30px; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            display: none; z-index: 20000; overflow-y: auto; max-height: 80vh;
+            display: none; z-index: 20000;
         }
-        .close-guide { float: right; cursor: pointer; font-weight: bold; font-size: 1.5rem; }
 
         header { margin-top: 150px; text-align: center; }
         header h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 20px; margin-bottom: 10px; }
         .sub-header { font-size: 0.8rem; letter-spacing: 5px; opacity: 0.6; text-transform: uppercase; }
 
         .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 60px 20px; }
-
         .card { width: 170px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
         .card.active { transform: scale(1.25); z-index: 50; }
 
         .info { margin-top: 20px; opacity: 0; transition: 0.5s; }
         .card.active .info { opacity: 1; }
-        .info h3 { margin: 5px 0; font-size: 1.2rem; }
-        .info .desc { font-size: 0.7rem; font-style: italic; margin-bottom: 10px; display: block; opacity: 0.8; }
-
         .order-btn {
             background: none; border: 1px solid currentColor; color: inherit;
             padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px;
             text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%;
         }
 
-        footer {
-            position: fixed; bottom: 15px; width: 100%;
-            text-align: center; font-size: 0.6rem; letter-spacing: 1px; opacity: 0.6;
+        footer { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 0.6rem; opacity: 0.6; }
+
+        #chat-box {
+            position: fixed; bottom: 150px; right: 30px; width: 280px; height: 320px;
+            background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: none; flex-direction: column; z-index: 10000; color: #333;
         }
+        .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; text-align: center; }
+        #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.75rem; }
+        .chat-options { padding: 10px; display: flex; gap: 5px; }
+        .chat-options button { flex: 1; padding: 5px; font-size: 0.6rem; cursor: pointer; }
 
         #dul-ai-trigger {
             position: fixed; bottom: 80px; right: 30px; width: 60px; height: 60px;
             background: #1a1a1a; color: #fff; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 10001; font-size: 20px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001;
         }
-
-        #chat-box {
-            position: fixed; bottom: 150px; right: 30px; width: 280px; height: 350px;
-            background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            display: none; flex-direction: column; z-index: 10000; overflow: hidden; color: #333;
-        }
-        .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; text-align: center; letter-spacing: 1px; }
-        #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.75rem; line-height: 1.4; }
-        .chat-options { padding: 10px; display: flex; gap: 5px; background: #f9f9f9; }
-        .chat-options button { flex: 1; padding: 8px; font-size: 0.6rem; cursor: pointer; border: 1px solid #ddd; background: #fff; }
 
         .floating-candle { position: absolute; pointer-events: none; animation: drift 20s linear infinite; }
         @keyframes drift { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(var(--mx), var(--my)) rotate(360deg); } }
@@ -110,147 +106,159 @@
     <nav>
         <div class="logo" onclick="location.reload()">DUL®</div>
         <div class="nav-right">
-            <div class="how-btn" onclick="toggleGuide()">Guide / Заавар</div>
+            <button class="lang-btn" onclick="toggleLang()">MN / EN</button>
+            <div class="how-btn" id="how-btn" onclick="toggleGuide()">Guide</div>
             <div class="cart-widget" onclick="showCart()" id="cart-ui">🛒 CART: 0₮</div>
         </div>
     </nav>
 
     <div id="guide-modal">
-        <span class="close-guide" onclick="toggleGuide()">×</span>
-        <h2 style="font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">CANDLE PROCESS / ХИЙХ ЗААВАР</h2>
-        <div style="margin-top: 15px;">
-            <p><b>1. Natural Wax / Байгалийн лав:</b> <br>Melt soy wax at 80°C. <br>(Шар буурцгийн лавыг 80°C-т хайлуулна.)</p>
-            <p><b>2. Premium Scents / Тансаг үнэр:</b> <br>Add fragrance oils. <br>(Үнэрт тосоо нэмж найруулна.)</p>
-            <p><b>3. Hand Pour / Гар цутгалт:</b> <br>Slow pour into glass jars. <br>(Шилэн савандаа зөөлөн цутгана.)</p>
-            <p><b>4. Curing / Хөргөлт:</b> <br>Wait 24 hours for best scent. <br>(Үнэрийг гаргахын тулд 24 цаг хөргөнө.)</p>
+        <span style="float:right; cursor:pointer;" onclick="toggleGuide()">×</span>
+        <h2 id="modal-title">CANDLE PROCESS</h2>
+        <div id="modal-content" style="font-size: 0.85rem; line-height: 1.6;">
+            <p><b>1. Natural Wax:</b> Melt soy wax at 80°C.</p>
+            <p><b>2. Premium Scents:</b> Add fragrance oils.</p>
+            <p><b>3. Hand Pour:</b> Pour slowly into glass.</p>
+            <p><b>4. Curing:</b> Wait 24 hours.</p>
         </div>
     </div>
 
-    <footer>
-        ULAANBAATAR, SCHOOL NO.1 | DUL® OFFICIAL<br>
-        © 2026 DUL Inc. Created by Zelme
-    </footer>
-
     <header>
         <h1>DUL SHOP</h1>
-        <div class="sub-header">Handmade & Luxury Scented Candles</div>
+        <div class="sub-header" id="sub-header">Handmade & Luxury Scented Candles</div>
     </header>
 
     <div class="container" id="c">
         <div class="card" onclick="select(this, 'red-bg')">
             <img src="red_candle-removebg-preview.png">
             <div class="info">
-                <h3>Infrared</h3>
-                <span class="desc">Handmade • Scented / Гараар хийсэн</span>
+                <h3 class="p-name">Infrared</h3>
+                <span class="p-desc">Handmade • Scented</span>
                 <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Infrared', 2000)">Add to Cart / Сагслах</button>
-                <button class="order-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order / Захиалах</button>
+                <button class="order-btn add-cart-btn" onclick="addToCart('Infrared', 2000)">Add to Cart</button>
+                <button class="order-btn order-now-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'blue-bg')">
             <img src="blue_candle-removebg-preview.png">
             <div class="info">
-                <h3>Heat Blue</h3>
-                <span class="desc">Premium • Relaxing / Тайвшруулах</span>
-                <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart / Сагслах</button>
-                <button class="order-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order / Захиалах</button>
+                <h3 class="p-name">Heat Blue</h3><span class="p-desc">Premium • Relaxing</span><p>2,000₮</p>
+                <button class="order-btn add-cart-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart</button>
+                <button class="order-btn order-now-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
         <div class="card" onclick="select(this, 'green-bg')">
             <img src="green_candle-removebg-preview.png">
             <div class="info">
-                <h3>Greenslate</h3>
-                <span class="desc">Natural • Fresh / Сэргээх үнэр</span>
-                <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart / Сагслах</button>
-                <button class="order-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order / Захиалах</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'orange-bg')">
-            <img src="yellow_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Solar Flare</h3>
-                <span class="desc">Organic • Warm / Дулаан үнэр</span>
-                <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Solar Flare', 2000)">Add to Cart / Сагслах</button>
-                <button class="order-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')">Order / Захиалах</button>
-            </div>
-        </div>
-        <div class="card" onclick="select(this, 'black-bg')">
-            <img src="black_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Obsidian</h3>
-                <span class="desc">Luxury • Deep / Гүн тансаг</span>
-                <p>2,000₮</p>
-                <button class="order-btn" onclick="addToCart('Obsidian', 2000)">Add to Cart / Сагслах</button>
-                <button class="order-btn" onclick="order(event, 'black_candle-removebg-preview.png')">Order / Захиалах</button>
+                <h3 class="p-name">Greenslate</h3><span class="p-desc">Natural • Fresh</span><p>2,000₮</p>
+                <button class="order-btn add-cart-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart</button>
+                <button class="order-btn order-now-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
     </div>
 
     <div id="chat-box">
-        <div class="chat-header">DUL® AI ASSISTANT</div>
-        <div id="chat-body">Hi! I'm Dul. Our candles are 100% handmade. <br>(Сайн уу? Би Дөл байна. Манай лаанууд 100% гараар хийгдсэн.)</div>
+        <div class="chat-header">DUL® AI</div>
+        <div id="chat-body">Hi! I'm Dul. Our candles are 100% handmade.</div>
         <div class="chat-options">
-            <button onclick="aiAsk('scent')">Scent / Үнэр</button>
-            <button onclick="aiAsk('quality')">Quality / Чанар</button>
+            <button onclick="aiAsk('scent')" id="ai-opt-1">Scent</button>
+            <button onclick="aiAsk('quality')" id="ai-opt-2">Quality</button>
         </div>
     </div>
     <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
 
+    <footer id="footer">ULAANBAATAR | DUL® OFFICIAL | Created by Zelme</footer>
+
     <script>
+        let currentLang = 'EN';
         let totalPrice = 0;
         let cartItems = [];
-        const b = document.getElementById('main');
-        
-        function select(el, bg) {
-            if(b.classList.contains('space-active')) return;
-            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            b.className = bg;
-        }
 
-        function toggleGuide() {
-            const modal = document.getElementById('guide-modal');
-            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        const translations = {
+            MN: {
+                how: "Заавар", cart: "САГС", sub: "Гараар хийсэн тансаг лаа",
+                add: "Сагслах", order: "Захиалах", 
+                mTitle: "ХИЙХ ЗААВАР", mContent: "<p>1. Шар буурцгийн лавыг 80°C-т хайлуулна.</p><p>2. Үнэрт тосоо нэмнэ.</p><p>3. Шилэндээ зөөлөн цутгана.</p><p>4. 24 цаг хөргөнө.</p>",
+                aiHi: "Сайн уу? Би Дөл байна. Манай лаанууд 100% гараар хийгдсэн.",
+                aiOpt1: "Үнэр", aiOpt2: "Чанар",
+                aiScent: "Бид тансаг тос ашигладаг.", aiQuality: "Zelme сэтгэлээ гаргаж хийдэг.",
+                empty: "Сагс хоосон байна.", footer: "УЛААНБААТАР | DUL® OFFICIAL | Zelme бүтээв"
+            },
+            EN: {
+                how: "Guide", cart: "CART", sub: "Handmade & Luxury Scented Candles",
+                add: "Add to Cart", order: "Order Now",
+                mTitle: "CANDLE PROCESS", mContent: "<p>1. Melt soy wax at 80°C.</p><p>2. Add fragrance oils.</p><p>3. Pour slowly into glass.</p><p>4. Wait 24 hours.</p>",
+                aiHi: "Hi! I'm Dul. Our candles are 100% handmade.",
+                aiOpt1: "Scent", aiOpt2: "Quality",
+                aiScent: "We use premium oils.", aiQuality: "Made with love by Zelme.",
+                empty: "Cart is empty.", footer: "ULAANBAATAR | DUL® OFFICIAL | Created by Zelme"
+            }
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'EN' ? 'MN' : 'EN';
+            const t = translations[currentLang];
+            
+            document.getElementById('how-btn').innerText = t.how;
+            document.getElementById('cart-ui').innerText = `🛒 ${t.cart}: ${totalPrice.toLocaleString()}₮`;
+            document.getElementById('sub-header').innerText = t.sub;
+            document.getElementById('modal-title').innerText = t.mTitle;
+            document.getElementById('modal-content').innerHTML = t.mContent;
+            document.getElementById('chat-body').innerText = t.aiHi;
+            document.getElementById('ai-opt-1').innerText = t.aiOpt1;
+            document.getElementById('ai-opt-2').innerText = t.aiOpt2;
+            document.getElementById('footer').innerText = t.footer;
+
+            document.querySelectorAll('.add-cart-btn').forEach(b => b.innerText = t.add);
+            document.querySelectorAll('.order-now-btn').forEach(b => b.innerText = t.order);
         }
 
         function addToCart(name, price) {
-            totalPrice += price;
-            cartItems.push(name);
-            document.getElementById('cart-ui').innerText = `🛒 CART: ${totalPrice.toLocaleString()}₮`;
+            totalPrice += price; cartItems.push(name);
+            const t = translations[currentLang].cart;
+            document.getElementById('cart-ui').innerText = `🛒 ${t}: ${totalPrice.toLocaleString()}₮`;
         }
 
         function showCart() {
-            if(cartItems.length === 0) alert("Cart is empty / Сагс хоосон байна.");
-            else alert("Your Cart / Таны сагс: \n" + cartItems.join(", ") + "\n\nTotal / Нийт: " + totalPrice.toLocaleString() + "₮");
+            if(cartItems.length === 0) alert(translations[currentLang].empty);
+            else alert(cartItems.join(", ") + "\nTotal: " + totalPrice.toLocaleString() + "₮");
+        }
+
+        function toggleGuide() {
+            const m = document.getElementById('guide-modal');
+            m.style.display = m.style.display === 'block' ? 'none' : 'block';
         }
 
         function toggleDul() {
-            const chat = document.getElementById('chat-box');
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+            const c = document.getElementById('chat-box');
+            c.style.display = c.style.display === 'flex' ? 'none' : 'flex';
         }
 
         function aiAsk(type) {
-            const body = document.getElementById('chat-body');
-            if(type === 'scent') body.innerHTML += `<p><b>Dul:</b> We use premium oils. <br>(Бид хамгийн шилдэг үнэрт тосыг ашигладаг.)</p>`;
-            if(type === 'quality') body.innerHTML += `<p><b>Dul:</b> Every candle is made with love by Zelme. <br>(Лаа бүрийг Zelme сэтгэлээ гаргаж хийдэг.)</p>`;
-            body.scrollTop = body.scrollHeight;
+            const b = document.getElementById('chat-body');
+            const t = translations[currentLang];
+            b.innerHTML += `<p><b>Dul:</b> ${type === 'scent' ? t.aiScent : t.aiQuality}</p>`;
+            b.scrollTop = b.scrollHeight;
+        }
+
+        function select(el, bg) {
+            if(document.body.classList.contains('space-active')) return;
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('main').className = bg;
         }
 
         function order(e, src) {
             e.stopPropagation();
-            b.className = 'space-active';
+            document.getElementById('main').className = 'space-active';
             document.getElementById('c').style.opacity = '0';
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 let img = document.createElement('img'); img.src = src;
-                img.className = 'floating-candle'; 
+                img.className = 'floating-candle';
                 img.style.left = Math.random()*100+"vw"; img.style.top = Math.random()*100+"vh";
-                img.style.setProperty('--mx', (Math.random()-0.5)*1500+"px");
-                img.style.setProperty('--my', (Math.random()-0.5)*1500+"px");
-                img.style.width = (40+Math.random()*100)+"px";
-                document.body.appendChild(img);
+                img.style.setProperty('--mx', (Math.random()-0.5)*1000+"px");
+                img.style.setProperty('--my', (Math.random()-0.5)*1000+"px");
+                img.style.width = "60px"; document.body.appendChild(img);
             }
         }
     </script>
