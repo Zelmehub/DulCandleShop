@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="mn">
-
 <head>
     <meta charset="UTF-8">
     <title>DUL® | Official Store</title>
@@ -15,229 +14,70 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Inter', sans-serif;
-            background: #fff;
-            color: #1a1a1a;
+            background: #fff; color: #1a1a1a;
             transition: background 0.8s ease;
-            overflow-x: hidden;
-            min-height: 100vh;
+            overflow-x: hidden; min-height: 100vh;
         }
 
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 50px;
-            position: fixed;
-            width: calc(100% - 100px);
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000;
+            background: rgba(255,255,255,0.01); backdrop-filter: blur(15px);
         }
+        .logo { font-weight: 900; letter-spacing: 8px; font-size: 1.5rem; cursor: pointer; }
+        .nav-links span { margin-left: 20px; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; font-weight: bold; }
 
-        .logo {
-            font-weight: 900;
-            letter-spacing: 8px;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        header { margin-top: 150px; text-align: center; }
+        header h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 20px; }
 
-        .nav-links span {
-            margin-left: 20px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 60px 20px; }
 
-        header {
-            margin-top: 150px;
-            text-align: center;
-        }
+        .card { width: 160px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
+        .card.active { transform: scale(1.3); z-index: 50; }
 
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 100;
-            letter-spacing: 20px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            padding: 60px 20px;
-        }
-
-        .card {
-            width: 160px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card img {
-            width: 100%;
-            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
-        }
-
-        .card.active {
-            transform: scale(1.3);
-            z-index: 50;
-        }
-
-        .info {
-            margin-top: 20px;
-            opacity: 0;
-            transition: 0.5s;
-        }
-
-        .card.active .info {
-            opacity: 1;
-        }
+        .info { margin-top: 20px; opacity: 0; transition: 0.5s; }
+        .card.active .info { opacity: 1; }
 
         .order-btn {
-            background: none;
-            border: 1px solid currentColor;
-            color: inherit;
-            padding: 10px 20px;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 10px;
+            background: none; border: 1px solid currentColor; color: inherit;
+            padding: 10px 20px; font-size: 0.6rem; letter-spacing: 2px;
+            text-transform: uppercase; cursor: pointer; margin-top: 10px;
         }
 
-        /* --- MINI AI DUL --- */
+        /* DUL AI WIDGET */
         #dul-ai-trigger {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: #1a1a1a;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10001;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background: #1a1a1a; color: #fff; border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10001; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
-
         #chat-box {
-            position: fixed;
-            bottom: 105px;
-            right: 30px;
-            width: 280px;
-            height: 350px;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            display: none;
-            flex-direction: column;
-            z-index: 10000;
-            overflow: hidden;
-            color: #333;
+            position: fixed; bottom: 105px; right: 30px; width: 280px; height: 350px;
+            background: #fff; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: none; flex-direction: column; z-index: 10000; overflow: hidden; color: #333;
         }
+        .chat-header { background: #000; color: #fff; padding: 15px; font-size: 0.8rem; letter-spacing: 2px; }
+        #chat-body { padding: 15px; flex-grow: 1; overflow-y: auto; font-size: 0.8rem; border-bottom: 1px solid #eee; }
+        .chat-options { padding: 10px; display: flex; flex-wrap: wrap; gap: 5px; background: #fdfdfd; }
+        .chat-options button { flex: 1; padding: 8px; font-size: 0.65rem; cursor: pointer; border: 1px solid #ddd; background: #fff; border-radius: 4px; }
 
-        .chat-header {
-            background: #000;
-            color: #fff;
-            padding: 15px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
+        footer { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; letter-spacing: 2px; opacity: 0.5; }
 
-        #chat-body {
-            padding: 15px;
-            flex-grow: 1;
-            overflow-y: auto;
-            font-size: 0.8rem;
-            border-bottom: 1px solid #eee;
-        }
+        .floating-candle { position: absolute; pointer-events: none; animation: drift 20s linear infinite; }
+        @keyframes drift { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(var(--mx), var(--my)) rotate(360deg); } }
 
-        .chat-options {
-            padding: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            background: #fdfdfd;
-        }
-
-        .chat-options button {
-            flex: 1;
-            padding: 8px;
-            font-size: 0.65rem;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            background: #fff;
-            border-radius: 4px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            opacity: 0.5;
-        }
-
-        .floating-candle {
-            position: absolute;
-            pointer-events: none;
-            animation: drift 20s linear infinite;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(var(--mx), var(--my)) rotate(360deg);
-            }
-        }
-
-        body.red-bg {
-            background: var(--lexus-red);
-            color: #fff;
-        }
-
-        body.blue-bg {
-            background: var(--lexus-blue);
-            color: #fff;
-        }
-
-        body.green-bg {
-            background: var(--lexus-green);
-            color: #fff;
-        }
-
-        body.orange-bg {
-            background: var(--lexus-orange);
-            color: #fff;
-        }
-
-        body.black-bg {
-            background: var(--lexus-black);
-            color: #fff;
-        }
-
-        body.space-active {
-            background: var(--space-bg) !important;
-            color: #fff;
-        }
+        /* Color States */
+        body.red-bg { background: var(--lexus-red); color: #fff; }
+        body.blue-bg { background: var(--lexus-blue); color: #fff; }
+        body.green-bg { background: var(--lexus-green); color: #fff; }
+        body.orange-bg { background: var(--lexus-orange); color: #fff; }
+        body.black-bg { background: var(--lexus-black); color: #fff; }
+        body.space-active { background: var(--space-bg) !important; color: #fff; }
     </style>
 </head>
-
 <body id="main">
 
     <nav>
@@ -255,44 +95,39 @@
     </header>
 
     <div class="container" id="c">
-        <div class="card" onclick="select(this, 'red-bg')"><img src="TUr/red_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Infrared</h3>
-                <p>2,000₮</p><button class="order-btn" onclick="addToCart('Infrared', 2000)">Add to
-                    Cart</button><br><button class="order-btn"
-                    onclick="order(event, 'TUr/red_candle-removebg-preview.png')">Order Now</button>
+        <div class="card" onclick="select(this, 'red-bg')">
+            <img src="red_candle-removebg-preview.png">
+            <div class="info"><h3>Infrared</h3><p>2,000₮</p>
+                <button class="order-btn" onclick="addToCart('Infrared', 2000)">Add to Cart</button><br>
+                <button class="order-btn" onclick="order(event, 'red_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
-        <div class="card" onclick="select(this, 'blue-bg')"><img src="TUr/blue_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Heat Blue</h3>
-                <p>2,000₮</p><button class="order-btn" onclick="addToCart('Heat Blue', 2000)">Add to
-                    Cart</button><br><button class="order-btn"
-                    onclick="order(event, 'TUr/blue_candle-removebg-preview.png')">Order Now</button>
+        <div class="card" onclick="select(this, 'blue-bg')">
+            <img src="blue_candle-removebg-preview.png">
+            <div class="info"><h3>Heat Blue</h3><p>2,000₮</p>
+                <button class="order-btn" onclick="addToCart('Heat Blue', 2000)">Add to Cart</button><br>
+                <button class="order-btn" onclick="order(event, 'blue_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
-        <div class="card" onclick="select(this, 'green-bg')"><img src="TUr/green_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Greenslate</h3>
-                <p>2,000₮</p><button class="order-btn" onclick="addToCart('Greenslate', 2000)">Add to
-                    Cart</button><br><button class="order-btn"
-                    onclick="order(event, 'TUr/green_candle-removebg-preview.png')">Order Now</button>
+        <div class="card" onclick="select(this, 'green-bg')">
+            <img src="green_candle-removebg-preview.png">
+            <div class="info"><h3>Greenslate</h3><p>2,000₮</p>
+                <button class="order-btn" onclick="addToCart('Greenslate', 2000)">Add to Cart</button><br>
+                <button class="order-btn" onclick="order(event, 'green_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
-        <div class="card" onclick="select(this, 'orange-bg')"><img src="TUr/yellow_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Solar Flare</h3>
-                <p>2,000₮</p><button class="order-btn" onclick="addToCart('Solar Flare', 2000)">Add to
-                    Cart</button><br><button class="order-btn"
-                    onclick="order(event, 'TUr/yellow_candle-removebg-preview.png')">Order Now</button>
+        <div class="card" onclick="select(this, 'orange-bg')">
+            <img src="yellow_candle-removebg-preview.png">
+            <div class="info"><h3>Solar Flare</h3><p>2,000₮</p>
+                <button class="order-btn" onclick="addToCart('Solar Flare', 2000)">Add to Cart</button><br>
+                <button class="order-btn" onclick="order(event, 'yellow_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
-        <div class="card" onclick="select(this, 'black-bg')"><img src="TUr/black_candle-removebg-preview.png">
-            <div class="info">
-                <h3>Obsidian</h3>
-                <p>2,000₮</p><button class="order-btn" onclick="addToCart('Obsidian', 2000)">Add to
-                    Cart</button><br><button class="order-btn"
-                    onclick="order(event, 'TUr/black_candle-removebg-preview.png')">Order Now</button>
+        <div class="card" onclick="select(this, 'black-bg')">
+            <img src="black_candle-removebg-preview.png">
+            <div class="info"><h3>Obsidian</h3><p>2,000₮</p>
+                <button class="order-btn" onclick="addToCart('Obsidian', 2000)">Add to Cart</button><br>
+                <button class="order-btn" onclick="order(event, 'black_candle-removebg-preview.png')">Order Now</button>
             </div>
         </div>
     </div>
@@ -315,9 +150,9 @@
         let totalPrice = 0;
         let cartItems = [];
         const b = document.getElementById('main');
-
+        
         function select(el, bg) {
-            if (b.classList.contains('space-active')) return;
+            if(b.classList.contains('space-active')) return;
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
             b.className = bg;
@@ -336,12 +171,12 @@
 
         function aiAsk(type) {
             const body = document.getElementById('chat-body');
-            if (type === 'price') {
+            if(type === 'price') {
                 body.innerHTML += `<p><b>Дөл:</b> Таны сагсан дахь нийт үнэ: ${totalPrice.toLocaleString()}₮ байна.</p>`;
-            } else if (type === 'cart') {
+            } else if(type === 'cart') {
                 let msg = cartItems.length > 0 ? cartItems.join(", ") : "хоосон байна.";
-                body.innerHTML += `<p><b>Дөл:</b> Таны сагс ${msg}</p>`;
-            } else if (type === 'address') {
+                body.innerHTML += `<p><b>Дөл:</b> Таны сагс: ${msg}</p>`;
+            } else if(type === 'address') {
                 body.innerHTML += `<p><b>Дөл:</b> Манай хаяг: Улаанбаатар хот, 1-р сургууль.</p>`;
             }
             body.scrollTop = body.scrollHeight;
@@ -353,15 +188,14 @@
             document.getElementById('c').style.opacity = '0';
             for (let i = 0; i < 20; i++) {
                 let img = document.createElement('img'); img.src = src;
-                img.className = 'floating-candle';
-                img.style.left = Math.random() * 100 + "vw"; img.style.top = Math.random() * 100 + "vh";
-                img.style.setProperty('--mx', (Math.random() - 0.5) * 1500 + "px");
-                img.style.setProperty('--my', (Math.random() - 0.5) * 1500 + "px");
-                img.style.width = (40 + Math.random() * 100) + "px";
+                img.className = 'floating-candle'; 
+                img.style.left = Math.random()*100+"vw"; img.style.top = Math.random()*100+"vh";
+                img.style.setProperty('--mx', (Math.random()-0.5)*1500+"px");
+                img.style.setProperty('--my', (Math.random()-0.5)*1500+"px");
+                img.style.width = (40+Math.random()*100)+"px";
                 document.body.appendChild(img);
             }
         }
     </script>
 </body>
-
 </html>
