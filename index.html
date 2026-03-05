@@ -6,21 +6,19 @@
     <title>DUL® | Official Store</title>
     <style>
         :root {
-            --lexus-red: radial-gradient(circle, #8B0000 0%, #1A0000 100%);
-            --lexus-blue: radial-gradient(circle, #002366 0%, #00081A 100%);
-            --lexus-green: radial-gradient(circle, #1B3022 0%, #050A08 100%);
-            --lexus-orange: radial-gradient(circle, #94511A 0%, #301A08 100%);
-            --lexus-black: radial-gradient(circle, #121212 0%, #000000 100%);
-            --space-bg: radial-gradient(ellipse at bottom, #0D1117 0%, #000000 100%);
+            --imperial-red: radial-gradient(circle, #8B0000 0%, #1A0000 100%);
+            --royal-blue: radial-gradient(circle, #002366 0%, #00081A 100%);
+            --emerald-green: radial-gradient(circle, #022b10 0%, #000a04 100%);
+            --golden-yellow: radial-gradient(circle, #94511A 0%, #301A08 100%);
+            --obsidian-black: radial-gradient(circle, #121212 0%, #000000 100%);
         }
 
         body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; transition: background 0.8s ease; overflow-x: hidden; min-height: 100vh; }
         
         /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000; background: rgba(255,255,255,0.01); backdrop-filter: blur(15px); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; position: fixed; width: calc(100% - 100px); top: 0; z-index: 1000; backdrop-filter: blur(15px); }
         .logo { font-weight: 900; letter-spacing: 8px; font-size: 1.5rem; cursor: pointer; }
         .nav-right { display: flex; align-items: center; gap: 15px; }
-        
         .lang-btn { font-size: 0.7rem; font-weight: bold; cursor: pointer; padding: 8px 12px; border: 1px solid currentColor; border-radius: 5px; background: transparent; color: inherit; }
         .how-btn { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid currentColor; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .cart-widget { background: #000; color: #fff; padding: 10px 20px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; cursor: pointer; }
@@ -32,40 +30,76 @@
 
         /* Product Grid */
         .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 60px 20px; }
-        .card { width: 175px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
-        .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
-        .card.active { transform: scale(1.25); z-index: 50; }
+        .card { width: 180px; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+        .card img { width: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); transition: 0.5s; }
+        .card.active { transform: scale(1.2); z-index: 50; }
         .info { margin-top: 20px; opacity: 0; transition: 0.5s; }
         .card.active .info { opacity: 1; }
-        .order-btn { background: none; border: 1px solid currentColor; color: inherit; padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%; }
+        .order-btn { background: none; border: 1px solid currentColor; color: inherit; padding: 8px 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 5px; width: 100%; border-radius: 5px; }
 
-        /* Advanced AI Chat */
+        /* LIVE EFFECTS (Галын болон гэрлийн эффект) */
+        /* Imperial Crimson - Галт дөл */
+        .card:nth-child(1).active img { animation: fire-glow 1.5s infinite alternate; }
+        @keyframes fire-glow {
+            0% { filter: drop-shadow(0 0 15px #ff4500) brightness(1); }
+            100% { filter: drop-shadow(0 0 35px #ff8c00) brightness(1.3); transform: rotate(1deg) scale(1.05); }
+        }
+
+        /* Royal Sapphire - Дөлөн цохилт */
+        .card:nth-child(2).active img { animation: blue-pulse 2s infinite ease-in-out; }
+        @keyframes blue-pulse {
+            0% { filter: drop-shadow(0 0 10px #0000ff); }
+            50% { filter: drop-shadow(0 0 30px #00ffff); }
+            100% { filter: drop-shadow(0 0 10px #0000ff); }
+        }
+
+        /* Emerald Majesty - Зүлэгний гэрэлтэлт */
+        .card:nth-child(3).active img { animation: green-sway 3s infinite ease-in-out; }
+        @keyframes green-sway {
+            0%, 100% { transform: rotate(-2deg); filter: drop-shadow(0 0 15px #00ff00); }
+            50% { transform: rotate(2deg); filter: drop-shadow(0 0 25px #adff2f); }
+        }
+
+        /* Golden Aurelia - Алтан туяа */
+        .card:nth-child(4).active img { animation: gold-shimmer 2s infinite linear; }
+        @keyframes gold-shimmer {
+            0% { filter: contrast(1.1) drop-shadow(0 0 10px gold); }
+            50% { filter: contrast(1.4) drop-shadow(0 0 30px yellow); }
+            100% { filter: contrast(1.1) drop-shadow(0 0 10px gold); }
+        }
+
+        /* Obsidian Noir - Нууцлаг утаа */
+        .card:nth-child(5).active img { animation: noir-mist 4s infinite ease-in-out; }
+        @keyframes noir-mist {
+            0%, 100% { filter: grayscale(0.3) blur(0px); }
+            50% { filter: grayscale(0) blur(1px) drop-shadow(0 0 25px #444); }
+        }
+
+        /* AI Chat */
         #chat-box { position: fixed; bottom: 100px; right: 30px; width: 320px; height: 450px; background: #fff; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; overflow: hidden; border: 1px solid #eee; }
-        .chat-header { background: #1a1a1a; color: #fff; padding: 20px; font-size: 0.9rem; font-weight: bold; text-align: center; letter-spacing: 2px; }
-        #chat-body { padding: 20px; flex-grow: 1; overflow-y: auto; font-size: 0.85rem; line-height: 1.5; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; color: #333; }
+        .chat-header { background: #1a1a1a; color: #fff; padding: 20px; font-size: 0.9rem; font-weight: bold; text-align: center; }
+        #chat-body { padding: 20px; flex-grow: 1; overflow-y: auto; font-size: 0.85rem; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; color: #333; }
         .msg { padding: 10px 15px; border-radius: 15px; max-width: 80%; }
-        .ai-msg { background: #eee; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .user-msg { background: #000; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .chat-input-area { padding: 15px; background: #fff; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .ai-msg { background: #eee; align-self: flex-start; }
+        .user-msg { background: #000; color: #fff; align-self: flex-end; }
+        .chat-input-area { padding: 15px; background: #fff; display: flex; gap: 10px; }
         #user-input { flex-grow: 1; border: 1px solid #ddd; padding: 10px; border-radius: 10px; outline: none; }
         .send-btn { background: #000; color: #fff; border: none; padding: 10px 15px; border-radius: 10px; cursor: pointer; }
-        #typing { font-size: 0.7rem; color: #888; padding: 0 20px; display: none; margin-bottom: 5px; }
 
         /* Modals */
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: #fff; color: #000; padding: 35px; border-radius: 25px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: none; z-index: 20000; max-height: 80vh; overflow-y: auto; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 600px; background: #fff; color: #000; padding: 35px; border-radius: 25px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: none; z-index: 20000; max-height: 80vh; overflow-y: auto; }
         .close-modal { float: right; cursor: pointer; font-size: 1.5rem; font-weight: bold; }
 
         #dul-ai-trigger { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001; font-size: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-        footer { padding: 60px 0; text-align: center; font-size: 0.7rem; opacity: 0.6; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 10px; text-decoration: underline; cursor: pointer; }
+        footer { padding: 50px 0; text-align: center; font-size: 0.7rem; opacity: 0.6; }
 
-        /* Dynamic Backgrounds */
-        body.red-bg { background: var(--lexus-red); color: #fff; }
-        body.blue-bg { background: var(--lexus-blue); color: #fff; }
-        body.green-bg { background: var(--lexus-green); color: #fff; }
-        body.orange-bg { background: var(--lexus-orange); color: #fff; }
-        body.black-bg { background: var(--lexus-black); color: #fff; }
+        /* BG Colors */
+        body.red-bg { background: var(--imperial-red); color: #fff; }
+        body.blue-bg { background: var(--royal-blue); color: #fff; }
+        body.green-bg { background: var(--emerald-green); color: #fff; }
+        body.orange-bg { background: var(--golden-yellow); color: #fff; }
+        body.black-bg { background: var(--obsidian-black); color: #fff; }
     </style>
 </head>
 <body id="main">
@@ -82,13 +116,7 @@
     <div id="guide-modal" class="modal">
         <span class="close-modal" onclick="closeModal('guide-modal')">×</span>
         <h2 id="m-guide-title"></h2>
-        <div id="m-guide-content" style="line-height: 1.8; font-size: 0.9rem;"></div>
-    </div>
-
-    <div id="policy-modal" class="modal">
-        <span class="close-modal" onclick="closeModal('policy-modal')">×</span>
-        <h2 id="m-policy-title"></h2>
-        <div id="m-policy-content" style="line-height: 1.6; font-size: 0.85rem;"></div>
+        <div id="m-guide-content"></div>
     </div>
 
     <header>
@@ -96,18 +124,56 @@
         <div class="sub-header" id="sub-header"></div>
     </header>
 
-    <div class="container" id="c">
-        <div class="card" onclick="select(this, 'red-bg')"><img src="red_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Infrared</h3><span class="p-desc"></span><p>1,550₮</p><button class="order-btn add-btn" onclick="addToCart('Infrared', 1550)"></button></div></div>
-        <div class="card" onclick="select(this, 'blue-bg')"><img src="blue_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Heat Blue</h3><span class="p-desc"></span><p>2,450₮</p><button class="order-btn add-btn" onclick="addToCart('Heat Blue', 2450)"></button></div></div>
-        <div class="card" onclick="select(this, 'green-bg')"><img src="green_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Greenslate</h3><span class="p-desc"></span><p>3,000₮</p><button class="order-btn add-btn" onclick="addToCart('Greenslate', 3000)"></button></div></div>
-        <div class="card" onclick="select(this, 'orange-bg')"><img src="yellow_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Solar Flare</h3><span class="p-desc"></span><p>2,500₮</p><button class="order-btn add-btn" onclick="addToCart('Solar Flare', 2500)"></button></div></div>
-        <div class="card" onclick="select(this, 'black-bg')"><img src="black_candle-removebg-preview.png"><div class="info"><h3 class="p-name">Obsidian</h3><span class="p-desc"></span><p>4,000₮</p><button class="order-btn add-btn" onclick="addToCart('Obsidian', 4000)"></button></div></div>
+    <div class="container">
+        <div class="card" onclick="select(this, 'red-bg')">
+            <img src="red_candle-removebg-preview.png">
+            <div class="info">
+                <h3 class="p-name">Imperial Crimson</h3>
+                <span class="p-desc"></span><p>1,550₮</p>
+                <button class="order-btn add-btn" onclick="addToCart('Imperial Crimson', 1550)"></button>
+            </div>
+        </div>
+
+        <div class="card" onclick="select(this, 'blue-bg')">
+            <img src="blue_candle-removebg-preview.png">
+            <div class="info">
+                <h3 class="p-name">Royal Sapphire</h3>
+                <span class="p-desc"></span><p>2,450₮</p>
+                <button class="order-btn add-btn" onclick="addToCart('Royal Sapphire', 2450)"></button>
+            </div>
+        </div>
+
+        <div class="card" onclick="select(this, 'green-bg')">
+            <img src="green_candle-removebg-preview.png">
+            <div class="info">
+                <h3 class="p-name">Emerald Majesty</h3>
+                <span class="p-desc"></span><p>3,000₮</p>
+                <button class="order-btn add-btn" onclick="addToCart('Emerald Majesty', 3000)"></button>
+            </div>
+        </div>
+
+        <div class="card" onclick="select(this, 'orange-bg')">
+            <img src="yellow_candle-removebg-preview.png">
+            <div class="info">
+                <h3 class="p-name">Golden Aurelia</h3>
+                <span class="p-desc"></span><p>2,500₮</p>
+                <button class="order-btn add-btn" onclick="addToCart('Golden Aurelia', 2500)"></button>
+            </div>
+        </div>
+
+        <div class="card" onclick="select(this, 'black-bg')">
+            <img src="black_candle-removebg-preview.png">
+            <div class="info">
+                <h3 class="p-name">Obsidian Noir</h3>
+                <span class="p-desc"></span><p>4,000₮</p>
+                <button class="order-btn add-btn" onclick="addToCart('Obsidian Noir', 4000)"></button>
+            </div>
+        </div>
     </div>
 
     <div id="chat-box">
         <div class="chat-header">DUL® INTEL AI</div>
         <div id="chat-body"><div class="msg ai-msg" id="ai-init"></div></div>
-        <div id="typing">DUL AI is typing...</div>
         <div class="chat-input-area">
             <input type="text" id="user-input" placeholder="...">
             <button class="send-btn" onclick="handleUserInput()">></button>
@@ -115,13 +181,7 @@
     </div>
     <div id="dul-ai-trigger" onclick="toggleDul()">🤖</div>
 
-    <footer>
-        <div>© 2026 DUL® OFFICIAL | Created by Zelme</div>
-        <div class="footer-links">
-            <span onclick="showPolicy('review')" id="f-review"></span>
-            <span onclick="showPolicy('return')" id="f-return"></span>
-        </div>
-    </footer>
+    <footer>© 2026 DUL® OFFICIAL | Created by Zelme</footer>
 
     <script>
         let currentLang = 'EN';
@@ -132,22 +192,28 @@
             MN: {
                 how: "Хийх заавар", cart: "САГС", sub: "Гараар хийсэн тансаг лаа", add: "Сагслах",
                 gTitle: "DUL® ГАР АРГААР ХИЙХ ДАРААЛАЛ",
-                gContent: `<p><b>1. Түүхий эд:</b> 100% органик шар буурцгийн лав сонгоно.</p><p><b>2. Хайлуулах:</b> Лавыг 80.5°C хэмд нарийн хайлуулна.</p><p><b>3. Үнэр:</b> Үнэрт тосыг 10%-ийн харьцаатай нэрнэ.</p><p><b>4. Гол:</b> Байгалийн хөвөн голыг гараар бэхэлнэ.</p><p><b>5. Цутгалт:</b> Гадаргууг толигор болгохын тулд удаан цутгана.</p><p><b>6. Амраах:</b> 48 цагийн турш үнэрийг шингээнэ.</p>`,
-                revTitle: "СЭТГЭГДЛИЙН ЖУРАМ", revContent: "<p>• Бодит худалдан авалтад үндэслэнэ.</p><p>• Соёлтой харилцааг эрхэмлэнэ.</p>",
-                retTitle: "БУЦААЛТЫН НӨХЦӨЛ", retContent: "<p>• 24 цагийн дотор, асаагаагүй тохиолдолд буцаана.</p>",
-                aiHi: "Сайн уу? Би DUL туслах байна. Танд юугаар туслах уу?",
-                fReview: "Сэтгэгдлийн журам", fReturn: "Буцаалтын нөхцөл",
-                pDesc: ["Гараар хийсэн", "Тайвшруулах", "Сэргээх үнэр", "Дулаан үнэр", "Гүн тансаг"]
+                gContent: `<p><b>1. Түүхий эд:</b> 100% органик шар буурцгийн лав сонгоно.</p><p><b>2. Хайлуулах:</b> Лавыг 80.5°C хэмд нарийн хайлуулна.</p><p><b>3. Үнэр нэрэх:</b> Үнэрт тосыг 10%-ийн харьцаатай нэрнэ.</p><p><b>4. Гол бэхлэх:</b> Байгалийн хөвөн голыг гараар бэхэлнэ.</p><p><b>5. Цутгалт:</b> Гадаргууг толигор болгохын тулд удаан цутгана.</p><p><b>6. Амраах:</b> 48 цагийн турш үнэрийг шингээнэ.</p>`,
+                aiHi: "Сайн уу? Би DUL туслах байна. Юугаар туслах уу?",
+                pDesc: [
+                    "Gal: Гал халуун, хүчирхэг (Rose & Spices)",
+                    "Dul: Тайвшруулах дөл (Sea Salt & Orchid)",
+                    "Grass: Шинэ сэргэг зүлэг (Green Tea & Mint)",
+                    "Aurelia: Алтан дулаан (Vanilla & Amber)",
+                    "Noir: Гүн нууцлаг (Oud & Sandalwood)"
+                ]
             },
             EN: {
                 how: "Process", cart: "CART", sub: "Handmade & Luxury Scented Candles", add: "Add to Cart",
                 gTitle: "THE DUL® CRAFTING PROCESS",
                 gContent: `<p><b>1. Sourcing:</b> 100% organic soy wax is selected.</p><p><b>2. Melting:</b> Precision melting at 80.5°C.</p><p><b>3. Infusion:</b> 10% premium oil ratio blend.</p><p><b>4. Wicking:</b> Hand-centered natural cotton wicks.</p><p><b>5. Pouring:</b> Slow-pour for a flawless finish.</p><p><b>6. Curing:</b> 48-hour resting period for deep scent.</p>`,
-                revTitle: "REVIEW POLICY", revContent: "<p>• Based on actual purchases only.</p><p>• Please maintain respectful language.</p>",
-                retTitle: "RETURN POLICY", retContent: "<p>• Returns within 24h if unused and unlit.</p>",
                 aiHi: "Hi! I'm DUL Assistant. How can I help you?",
-                fReview: "Review Policy", fReturn: "Return Policy",
-                pDesc: ["Handmade • Scented", "Premium • Relaxing", "Natural • Fresh", "Organic • Warm", "Luxury • Deep"]
+                pDesc: [
+                    "Gal: Fiery & Powerful (Rose & Spices)",
+                    "Dul: Calming Flame (Sea Salt & Orchid)",
+                    "Grass: Fresh Cut Grass (Green Tea & Mint)",
+                    "Aurelia: Golden Warmth (Vanilla & Amber)",
+                    "Noir: Deep & Mysterious (Oud & Sandalwood)"
+                ]
             }
         };
 
@@ -159,8 +225,6 @@
             document.getElementById('m-guide-title').innerText = t.gTitle;
             document.getElementById('m-guide-content').innerHTML = t.gContent;
             document.getElementById('ai-init').innerText = t.aiHi;
-            document.getElementById('f-review').innerText = t.fReview;
-            document.getElementById('f-return').innerText = t.fReturn;
             document.querySelectorAll('.add-btn').forEach(b => b.innerText = t.add);
             document.querySelectorAll('.p-desc').forEach((s, i) => s.innerText = t.pDesc[i]);
             updateCartUI();
@@ -168,18 +232,13 @@
 
         function select(el, bg) {
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active'); document.getElementById('main').className = bg;
+            el.classList.add('active');
+            document.getElementById('main').className = bg;
         }
 
         function openModal(id) { document.getElementById(id).style.display = 'block'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function showPolicy(type) {
-            const t = translations[currentLang];
-            document.getElementById('m-policy-title').innerText = type === 'review' ? t.revTitle : t.retTitle;
-            document.getElementById('m-policy-content').innerHTML = type === 'review' ? t.revContent : t.retContent;
-            openModal('policy-modal');
-        }
+        function toggleDul() { const cb = document.getElementById('chat-box'); cb.style.display = cb.style.display === 'flex' ? 'none' : 'flex'; }
 
         function addToCart(name, price) {
             totalPrice += price; cartItems.push(name); updateCartUI();
@@ -191,27 +250,19 @@
 
         function showCart() { alert(cartItems.length ? cartItems.join(", ") : "Empty"); }
 
-        function toggleDul() { 
-            const cb = document.getElementById('chat-box');
-            cb.style.display = cb.style.display === 'flex' ? 'none' : 'flex';
-        }
-
         function handleUserInput() {
             const input = document.getElementById('user-input');
             const val = input.value.trim();
             if(!val) return;
-            addMsg(val, true); input.value = '';
-            document.getElementById('typing').style.display = 'block';
-            
+            addMsg(val, true);
+            input.value = '';
             setTimeout(() => {
-                document.getElementById('typing').style.display = 'none';
-                let reply = currentLang === 'MN' ? "Би таныг сайн ойлгосонгүй. Үнэ эсвэл хүргэлтийн талаар асууна уу." : "I didn't quite catch that. Try asking about price or delivery.";
+                let reply = currentLang === 'MN' ? "Үнэ, хүргэлт эсвэл үнэрүүдийн талаар асууна уу." : "Please ask about prices, delivery, or scents.";
                 const q = val.toLowerCase();
-                if(q.includes("үнэ") || q.includes("price")) reply = currentLang === 'MN' ? "Манай бүх лаа 2,000₮." : "All candles are 2,000₮.";
-                if(q.includes("хэн") || q.includes("who")) reply = "Created by Zelme with love.";
-                if(q.includes("чанар") || q.includes("quality")) reply = "100% Handmade quality.";
+                if(q.includes("үнэ") || q.includes("price")) reply = currentLang === 'MN' ? "Үнэ 1,550₮ - 4,000₮ хооронд байна." : "Prices range from 1,550₮ to 4,000₮.";
+                if(q.includes("үнэр") || q.includes("scent")) reply = currentLang === 'MN' ? "Манай лаанууд Гал, Дөл, Зүлэг, Алт, Ноар гэсэн үнэртэй." : "We have Gal, Dul, Grass, Aurelia, and Noir scents.";
                 addMsg(reply, false);
-            }, 800);
+            }, 600);
         }
 
         function addMsg(txt, isUser) {
@@ -222,9 +273,7 @@
             body.scrollTop = body.scrollHeight;
         }
 
-        document.getElementById('user-input').addEventListener('keypress', e => { if(e.key === 'Enter') handleUserInput(); });
-        toggleLang(); toggleLang(); 
+        toggleLang(); toggleLang(); // Init
     </script>
 </body>
 </html>
-
